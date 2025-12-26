@@ -1,0 +1,67 @@
+/* ___ Tema Data Padrão ___ */
+:root {
+    /* __ BackGround __ */
+    --bg-color-1: hsl(0, 0%, 90%);
+    --bg-color-2: hsl(0, 0%, 95%);
+    --bg-color-3: hsl(0, 0%, 100%);
+
+    /* __ Text __ */
+    --text-color-1: hsl(0, 0%, 5%);
+    --text-color-2: hsl(0, 0%, 30%);
+    --p1-size: 14px;
+    --p2-size: 14px;
+    --h1-size: clamp(1rem, 2.6vw, 1.5rem);
+    --h2-size: clamp(1.4rem, 4vw, 2rem);
+
+    /* __ Action __ */
+    --primary-hsl: 210, 100%, 50%;
+    --primary-color: hsl(var(--primary-hsl));
+
+    /* __ Alert __ */
+}
+
+/* ___ Datas Theme ___ */
+[data-theme="dark"] {
+    /* __ BackGround __ */
+    --bg-color-1: hsl(0, 0%, 5%);
+    --bg-color-2: hsl(0, 0%, 7%);
+    --bg-color-3: hsl(0, 0%, 15%);
+
+    /* __ Text __ */
+    --text-color-1: hsl(0, 0%, 95%);
+    --text-color-2: hsl(0, 0%, 70%);
+
+    /* __ primarys __ */
+    --primary-color: #007bff;
+}
+
+[data-theme="light"] {
+    /* __ BackGround __ */
+    --bg-color-1: hsl(0, 0%, 90%);
+    --bg-color-2: hsl(0, 0%, 95%);
+    --bg-color-3: hsl(0, 0%, 100%);
+
+    /* __ Text __ */
+    --text-color-1: hsl(0, 0%, 5%);
+    --text-color-2: hsl(0, 0%, 30%);
+
+    /* __ primarys __ */
+    --primary-color: #007bff;
+}
+
+/* ___ Preferencia Automatica ___ */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        /* __ BackGround __ */
+        --bg-color-1: hsl(0, 0%, 5%);
+        --bg-color-2: hsl(0, 0%, 7%);
+        --bg-color-3: hsl(0, 0%, 15%);
+
+        /* __ Text __ */
+        --text-color-1: hsl(0, 0%, 95%);
+        --text-color-2: hsl(0, 0%, 70%);
+
+        /* __ primarys __ */
+        --primary-color: #007bff;
+    }
+}

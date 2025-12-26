@@ -1,0 +1,80 @@
+{
+    "social": [
+        {
+            "nome": "GitHub",
+            "url": "https://github.com/Natan11ael/",
+            "icone": "fa-brands fa-github"
+        },
+        {
+            "nome": "LinkedIn",
+            "url": "https://www.linkedin.com/in/natanael-sou/",
+            "icone": "fa-brands fa-linkedin"
+        },
+        {
+            "nome": "Instagram",
+            "url": "https://www.instagram.com/naytan.fox/",
+            "icone": "fa-brands fa-instagram"
+        },
+        {
+            "nome": "Facebook",
+            "url": "https://www.facebook.com/natanael.sousa.2008/",
+            "icone": "fa-brands fa-facebook"
+        },
+        {
+            "nome": "WhatsApp",
+            "url": "https://wa.me/11947629302/",
+            "icone": "fa-brands fa-whatsapp"
+        }
+    ],
+    "skills": [
+        "HTML & CSS",
+        "JavaScript",
+        "TypeScript",
+        "Node.js",
+        "React.js",
+        "Dart",
+        "Flutter",
+        "Python",
+        "C/C++",
+        "Java",
+        "MySQL",
+        "Git & GitHub"
+    ],
+    "projects": [
+        {
+            "title": "Portfólio Moderno",
+            "description": "Design responsivo, animações customizadas e moldavel com json para modificações tranquilas e rápidas.",
+            "image": "assets/img/projeto2.jpg",
+            "techs": [
+                "HTML",
+                "CSS",
+                "JS",
+                "JSON"
+            ],
+            "github": "https://github.com/Natan11ael/portfolio/",
+            "demo": "https://seu-portfolio.com"
+        }
+    ],
+    "experiences": [
+        {
+            "period": "2.2025 - Presente",
+            "position": "Desenvolvedor Full-Stack & Moblie",
+            "enterprise": "EE República do Suriname",
+            "description": "Desenvolvimento do TCC, objetivo criar uma aplicação web e mobile capaz de participar no mercdo, criamos uma rede social que misturava o melhor de cada rede existente com insagram, discord, reddit e tiwtter.",
+            "techs": [
+                "Node.js",
+                "Flutter",
+                "MySQL"
+            ]
+        }
+    ],
+    "articles": [],
+    "//": {
+        "title": "Como estruturar um banco de dados MySQL para escalabilidade",
+        "summary": "Neste artigo, explico as melhores práticas de normalização e indexação para projetos de grande porte...",
+        "image": "assets/img/blog1.jpg",
+        "category": "Desenvolvimento",
+        "date": "24 Dez, 2025",
+        "link": "#"
+    }
+}

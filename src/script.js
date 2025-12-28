@@ -1,79 +1,91 @@
 // --- Generic values
 const html = document.documentElement;
-
+//
 // --- Theme Managers
 const theme_btn = document.getElementById('theme');
 const theme_ico = theme_btn.querySelector('i');
 const themes = [
-    { icon: "fa-sun", name: "light" },
-    { icon: "fa-moon", name: "dark" },
-    { icon: "fa-circle-half-stroke", name: "auto" }
+  { icon: "fa-sun", name: "light" },
+  { icon: "fa-moon", name: "dark" },
+  { icon: "fa-circle-half-stroke", name: "auto" }
 ];
 let theme_id = 2;
 //
 theme_btn.addEventListener('click', () => {
-    theme_id = (theme_id + 1) % themes.length;
-    const new_theme = themes[theme_id];
+  theme_id = (theme_id + 1) % themes.length;
+  const new_theme = themes[theme_id];
 
-    theme_ico.className = `fa-solid ${new_theme.icon}`;
+  theme_ico.className = `fa-solid ${new_theme.icon}`;
 
-    applyTheme(new_theme.name);
+  applyTheme(new_theme.name);
 });
 function applyTheme(theme) {
-    if (theme === 'auto') html.removeAttribute('data-theme');
-    else html.setAttribute('data-theme', theme);
-    localStorage.setItem('user-theme', theme);
+  if (theme === 'auto') html.removeAttribute('data-theme');
+  else html.setAttribute('data-theme', theme);
+  localStorage.setItem('user-theme', theme);
 }
-
 //
+// --- Header Menu Manager
+const toggleIcon = document.querySelector('.toggle-icon');
+const headerMenu = document.querySelector('header ul');
 //
-const menuContainer = document.querySelector('.right');
-const icon = document.querySelector('.toggle-icon');
-
-icon.addEventListener('click', () => {
-    // Alterna a classe 'open' no container pai
-    menuContainer.classList.toggle('open');
+// Open Menu
+toggleIcon.addEventListener('click', () => {
+  toggleIcon.classList.toggle('open');
+  headerMenu.classList.toggle('open');
 });
+//
+// Close Menu
+window.addEventListener('click', (e) => {
+  if (headerMenu.classList.contains('open') &&
+    !headerMenu.contains(e.target) &&
+    !toggleIcon.contains(e.target)) {
 
-// --- Section Active
-const observerOptions = {
-    root: null, // usa a janela do navegador como referência
-    threshold: 0.2 // dispara quando 20% da seção está visível
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Quando entra na tela
-            entry.target.classList.add('active');
-        } else {
-            // Quando sai da tela (faz o efeito de sumir novamente)
-            entry.target.classList.remove('active');
-        }
-    });
-}, observerOptions);
-
-// Seleciona todas as seções e coloca o observador nelas
-document.querySelectorAll('section').forEach(section => {
-    observer.observe(section);
+    headerMenu.classList.remove('open');
+    toggleIcon.classList.remove('open');
+  }
 });
-
 //
+headerMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    headerMenu.classList.remove('open');
+    toggleIcon.classList.remove('open');
+  });
+});
 //
+// --- Header Hidden
 let lastScrollY = window.scrollY;
 const header = document.querySelector("header");
 
 window.addEventListener("scroll", () => {
-  if (lastScrollY < window.scrollY) {
-    // Rolando para baixo: adiciona a classe que esconde
-    header.classList.add("header-hidden");
-  } else {
-    // Rolando para cima: remove a classe e mostra o header
-    header.classList.remove("header-hidden");
-  }
+  if (lastScrollY < window.scrollY) header.classList.add("header-hidden");
+  else header.classList.remove("header-hidden");
+  
   lastScrollY = window.scrollY;
 });
+//
+// --- Section Active
+const observerOptions = {
+  root: null, // usa a janela do navegador como referência
+  threshold: 0.35 // dispara quando 20% da seção está visível
+};
 
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Quando entra na tela
+      entry.target.classList.add('active');
+    } else {
+      // Quando sai da tela (faz o efeito de sumir novamente)
+      entry.target.classList.remove('active');
+    }
+  });
+}, observerOptions);
+//
+// Seleciona todas as seções e coloca o observador nelas
+document.querySelectorAll('section').forEach(section => {
+  observer.observe(section);
+});
 //
 // ---  Form
 const form = document.querySelector(".contact-form");
@@ -97,56 +109,55 @@ form.addEventListener("submit", async (e) => {
         alert("Ocorreu um erro ao enviar. Tente novamente mais tarde.");
     }
 });
-
 //
 // --- Loads key information
 // Função principal que busca os dados e distribui para as funções de renderização
 async function carregarPortfolio() {
-    try {
-        const response = await fetch('./contents.json');
-        if (!response.ok) throw new Error('Não foi possível carregar o arquivo JSON');
-        
-        const data = await response.json();
+  try {
+    const response = await fetch('./contents.json');
+    if (!response.ok) throw new Error('Não foi possível carregar o arquivo JSON');
 
-        // Executa todas as funções de preenchimento
-        renderSocial(data.social);
-        renderSkills(data.skills);
-        renderProjects(data.projects);
-        renderExperiences(data.experiences);
-        renderArticles(data.articles);
+    const data = await response.json();
 
-    } catch (error) {
-        console.error('Erro ao carregar o portfólio:', error);
-    }
+    // Executa todas as funções de preenchimento
+    renderSocial(data.social);
+    renderSkills(data.skills);
+    renderProjects(data.projects);
+    renderExperiences(data.experiences);
+    renderArticles(data.articles);
+
+  } catch (error) {
+    console.error('Erro ao carregar o portfólio:', error);
+  }
 }
-
+//
 // 1. Renderiza Redes Sociais (em todos os containers: social-links e footer-social)
 function renderSocial(socials) {
-    const containers = document.querySelectorAll(".social-links, .footer-social");
-    const html = socials.map(s => `
+  const containers = document.querySelectorAll(".social-links, .footer-social");
+  const html = socials.map(s => `
         <a href="${s.url}" target="_blank" title="${s.nome}">
             <i class="${s.icone}"></i>
         </a>
     `).join('');
-    
-    containers.forEach(c => c.innerHTML = html);
-}
 
+  containers.forEach(c => c.innerHTML = html);
+}
+//
 // 2. Renderiza as Habilidades (Badges)
 function renderSkills(skills) {
-    const grid = document.querySelector(".skills-grid");
-    if (grid) {
-        grid.innerHTML = skills.map(s => `
+  const grid = document.querySelector(".skills-grid");
+  if (grid) {
+    grid.innerHTML = skills.map(s => `
             <span class="skill-badge">${s}</span>
         `).join('');
-    }
+  }
 }
-
+//
 // 3. Renderiza os Projetos (Cards)
 function renderProjects(projects) {
-    const grid = document.querySelector(".projects-grid");
-    if (grid) {
-        grid.innerHTML = projects.map(p => `
+  const grid = document.querySelector(".projects-grid");
+  if (grid) {
+    grid.innerHTML = projects.map(p => `
             <article class="project-card">
                 <div class="project-image">
                     <img src="${p.image}" alt="${p.title}">
@@ -164,14 +175,14 @@ function renderProjects(projects) {
                 </div>
             </article>
         `).join('');
-    }
+  }
 }
-
+//
 // 4. Renderiza a Timeline de Experiências
 function renderExperiences(experiences) {
-    const timeline = document.querySelector(".timeline");
-    if (timeline) {
-        timeline.innerHTML = experiences.map(e => `
+  const timeline = document.querySelector(".timeline");
+  if (timeline) {
+    timeline.innerHTML = experiences.map(e => `
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-date">${e.period}</div>
@@ -185,14 +196,14 @@ function renderExperiences(experiences) {
                 </div>
             </div>
         `).join('');
-    }
+  }
 }
-
+//
 // 5. Renderiza os Artigos do Blog
 function renderArticles(articles) {
-    const grid = document.querySelector(".blog-grid");
-    if (grid && articles.length > 0) {
-        grid.innerHTML = articles.map(a => `
+  const grid = document.querySelector(".blog-grid");
+  if (grid && articles.length > 0) {
+    grid.innerHTML = articles.map(a => `
             <article class="blog-card">
                 <div class="blog-image">
                     <img src="${a.image}" alt="${a.title}">
@@ -208,19 +219,19 @@ function renderArticles(articles) {
                 </div>
             </article>
         `).join('');
-    }
-    else {
-        grid.innerHTML = `
+  }
+  else {
+    grid.innerHTML = `
             <article class="blog-card placeholder">
                 <div class="blog-content">
-                    <i class="fa-solid fa-pen-nib" style="font-size: 2rem; color: var(--primary-color);"></i>
+                    <i class="fa-solid fa-pen-nib" style="font-size: 2rem; color: hsl(var(--color-main));"></i>
                     <h3>Futuramente escrevendo o primeiro artigo e/ou blog...</h3>
                     <p>Em breve, compartilharei meus conhecimentos, experiencias e as novidades do mundo Technologico aqui.</p>
                 </div>
             </article>
         `;
-    }
+  }
 }
-
+//
 // Inicia o processo quando o documento estiver pronto
 document.addEventListener("DOMContentLoaded", carregarPortfolio);

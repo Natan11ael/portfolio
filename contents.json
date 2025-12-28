@@ -21,9 +21,9 @@
             "icone": "fa-brands fa-facebook"
         },
         {
-            "nome": "WhatsApp",
-            "url": "https://wa.me/11947629302/",
-            "icone": "fa-brands fa-whatsapp"
+            "nome": "Youtube",
+            "url": "http://www.youtube.com/@Naytan-Fox",
+            "icone": "fa-brands fa-youtube"
         }
     ],
     "skills": [
@@ -52,7 +52,7 @@
                 "JSON"
             ],
             "github": "https://github.com/Natan11ael/portfolio/",
-            "demo": "https://seu-portfolio.com"
+            "demo": "https://natan11ael.github.io/portfolio/"
         }
     ],
     "experiences": [

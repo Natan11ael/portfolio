@@ -1,3 +1,4 @@
+//
 // --- Generic values
 const html = document.documentElement;
 //
@@ -24,6 +25,14 @@ function applyTheme(theme) {
   else html.setAttribute('data-theme', theme);
   localStorage.setItem('user-theme', theme);
 }
+//
+//
+const savedTheme = localStorage.getItem('user-theme') || 'auto';
+applyTheme(savedTheme);
+//
+const initialThemeObj = themes.find(t => t.name === savedTheme) || themes[2];
+theme_id = themes.indexOf(initialThemeObj);
+theme_ico.className = `fa-solid ${initialThemeObj.icon}`;
 //
 // --- Header Menu Manager
 const toggleIcon = document.querySelector('.toggle-icon');
@@ -56,18 +65,27 @@ headerMenu.querySelectorAll('a').forEach(link => {
 // --- Header Hidden
 let lastScrollY = window.scrollY;
 const header = document.querySelector("header");
+let ticking = false;
 
 window.addEventListener("scroll", () => {
-  if (lastScrollY < window.scrollY) header.classList.add("header-hidden");
-  else header.classList.remove("header-hidden");
-  
-  lastScrollY = window.scrollY;
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      if (lastScrollY < window.scrollY && window.scrollY > 100) {
+        header.classList.add("header-hidden");
+      } else {
+        header.classList.remove("header-hidden");
+      }
+      lastScrollY = window.scrollY;
+      ticking = false;
+    });
+    ticking = true;
+  }
 });
 //
 // --- Section Active
 const observerOptions = {
   root: null, // usa a janela do navegador como referência
-  threshold: 0.35 // dispara quando 20% da seção está visível
+  threshold: 0.2 // dispara quando 20% da seção está visível
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -89,35 +107,69 @@ document.querySelectorAll('section').forEach(section => {
 //
 // ---  Form
 const form = document.querySelector(".contact-form");
+const btnSubmit = form.querySelector(".btn-submit");
 
 form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Impede a página de recarregar
-    
+  e.preventDefault();
+
+  // Salva o conteúdo original para voltar depois
+  const originalContent = btnSubmit.innerHTML;
+
+  // ESTADO 1: Enviando
+  btnSubmit.disabled = true;
+  btnSubmit.innerHTML = `Enviando... <i class="fa-solid fa-spinner fa-spin"></i>`;
+  btnSubmit.style.opacity = "0.7";
+  btnSubmit.style.cursor = "not-allowed";
+
+  try {
     const data = new FormData(form);
     const response = await fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
     });
 
     if (response.ok) {
-        alert("Mensagem enviada com sucesso! Natanael entrará em contato em breve.");
-        form.reset(); // Limpa o formulário
+      // ESTADO 2: Sucesso
+      btnSubmit.innerHTML = `Enviado! <i class="fa-solid fa-check"></i>`;
+      btnSubmit.classList.add("btn-success"); // Vamos criar essa classe no CSS
+
+      form.reset();
+
+      // ESTADO 3: Resetar após 3 segundos
+      setTimeout(() => {
+        btnSubmit.classList.remove("btn-success");
+        btnSubmit.innerHTML = originalContent;
+        btnSubmit.disabled = false;
+        btnSubmit.style.opacity = "1";
+        btnSubmit.style.cursor = "pointer";
+      }, 3000);
+
     } else {
-        alert("Ocorreu um erro ao enviar. Tente novamente mais tarde.");
+      throw new Error();
     }
+  } catch (error) {
+    // ESTADO DE ERRO
+    btnSubmit.innerHTML = `Erro ao enviar <i class="fa-solid fa-xmark"></i>`;
+    btnSubmit.style.background = "#ef4444"; // Vermelho
+
+    setTimeout(() => {
+      btnSubmit.innerHTML = originalContent;
+      btnSubmit.style.background = ""; // Volta ao original do CSS
+      btnSubmit.disabled = false;
+    }, 3000);
+  }
 });
 //
 // --- Loads key information
 // Função principal que busca os dados e distribui para as funções de renderização
+import data from '/src/contents.json';
 async function carregarPortfolio() {
   try {
-    const response = await fetch('./contents.json');
-    if (!response.ok) throw new Error('Não foi possível carregar o arquivo JSON');
+    //const response = await fetch('/contents.json');
+    //if (!response.ok) throw new Error('Não foi possível carregar o arquivo JSON');
 
-    const data = await response.json();
+    //const data = await response.json();
 
     // Executa todas as funções de preenchimento
     renderSocial(data.social);
@@ -135,7 +187,7 @@ async function carregarPortfolio() {
 function renderSocial(socials) {
   const containers = document.querySelectorAll(".social-links, .footer-social");
   const html = socials.map(s => `
-        <a href="${s.url}" target="_blank" title="${s.nome}">
+        <a href="${s.url}" target="_blank" title="${s.nome}" aria-label="Acessar meu ${s.nome}">
             <i class="${s.icone}"></i>
         </a>
     `).join('');
@@ -160,10 +212,10 @@ function renderProjects(projects) {
     grid.innerHTML = projects.map(p => `
             <article class="project-card">
                 <div class="project-image">
-                    <img src="${p.image}" alt="${p.title}">
+                    <img src="${p.image}" alt="${p.title}" loading="lazy">
                     <div class="project-overlay">
-                        <a href="${p.github}" target="_blank"><i class="fa-brands fa-github"></i></a>
-                        <a href="${p.demo}" target="_blank"><i class="fa-solid fa-link"></i></a>
+                        <a href="${p.github}" target="_blank" aria-label="Ver código do projeto ${p.title} no GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="${p.demo}" target="_blank" aria-label="Ver o projeto ${p.title}."><i class="fa-solid fa-link"></i></a>
                     </div>
                 </div>
                 <div class="project-info">
@@ -206,7 +258,7 @@ function renderArticles(articles) {
     grid.innerHTML = articles.map(a => `
             <article class="blog-card">
                 <div class="blog-image">
-                    <img src="${a.image}" alt="${a.title}">
+                    <img src="${a.image}" alt="${a.title}" loading="lazy">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -224,7 +276,7 @@ function renderArticles(articles) {
     grid.innerHTML = `
             <article class="blog-card placeholder">
                 <div class="blog-content">
-                    <i class="fa-solid fa-pen-nib" style="font-size: 2rem; color: hsl(var(--color-main));"></i>
+                    <i class="fa-solid fa-pen-nib" style="font-size: 2rem; color: var(--accent-color);"></i>
                     <h3>Futuramente escrevendo o primeiro artigo e/ou blog...</h3>
                     <p>Em breve, compartilharei meus conhecimentos, experiencias e as novidades do mundo Technologico aqui.</p>
                 </div>

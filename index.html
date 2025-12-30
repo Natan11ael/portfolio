@@ -1,161 +1,160 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
 
-    <meta name="description"
-        content="Portfólio de Natanael de Sousa, Desenvolvedor Full-Stack. Especialista em JavaScript, Python, C/C++, Dart, React.js e Flutter. Confira meus projetos e experiências.">
+  <link rel="canonical" href="https://natan11ael.github.io/portfolio/">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
 
-    <meta property="og:title" content="Portfólio de Natanael de Sousa | Full-Stack Developer">
-    <meta property="og:description"
-        content="Portfólio web desenvolvido por Natanael de Sousa. Demonstração de conhecimentos técnicos, projetos realizados e em andamento na área de desenvolvimento Full-Stack.">
-    <meta property="og:image" content="https://natan11ael.github.io/portfolio/src/img/og-image.png">
-    <meta property="og:url" content="https://natan11ael.github.io/portfolio/">
-    <meta property="og:type" content="website">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Portfólio de Natanael de Sousa, Desenvolvedor Full-Stack. Especialista em JavaScript, Python, C/C++, Dart, React.js e Flutter. Confira meus projetos e experiências.">
 
-    <link rel="canonical" href="https://natan11ael.github.io/portfolio/">
-    <link rel="icon" href="src/img/favicon.ico" type="image/x-icon">
+  <meta property="og:title" content="Portfólio de Natanael de Sousa | Full-Stack Developer">
+  <meta property="og:description"
+    content="Portfólio web desenvolvido por Natanael de Sousa. Demonstração de conhecimentos técnicos, projetos realizados e em andamento na área de desenvolvimento Full-Stack.">
+  <meta property="og:image" content="https://natan11ael.github.io/portfolio/og-image.png">
+  <meta property="og:url" content="https://natan11ael.github.io/portfolio/">
+  <meta property="og:type" content="website">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <link rel="preload" href="src/style.css" as="style">
-    <link rel="stylesheet" href="src/style.css">
+  <link rel="preload" href="/src/style.css" as="style">
+  <link rel="stylesheet" href="/src/style.css">
 
-    <title>Natanael de Sousa</title>
+  <title>Natanael de Sousa</title>
 </head>
 
 <body>
-    <header>
-        <div class="left">
-            <h1 class="title">Natanael<span>.</span></h1>
+  <header>
+    <div class="left">
+      <h1 class="title">Natanael<span>.</span></h1>
+    </div>
+    <div class="right">
+      <i class="fa-solid fa-chevron-down toggle-icon"></i>
+      <ul class="sections">
+        <li><a href="#me">Home</a></li>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#projects">Projetos</a></li>
+        <li><a href="#experiences">Experiência</a></li>
+        <li><a href="#blog">Blog & Artigos</a></li>
+        <li><a href="#contact">Contato</a></li>
+        <li id="theme"><i class="fa-solid fa-circle-half-stroke"></i> Tema</li>
+      </ul>
+    </div>
+  </header>
+  <main>
+    <section class="me" id="me">
+      <img src="/perfil.jpeg" alt="Minha foto de perfil" loading="lazy">
+      <div class="me-content">
+        <h2 class="my-name">Natanael de Sousa</h2>
+        <p class="my-title">Developer Full-Stack | JavaScript & Python | Node.js & React.js | MySQL & SQL | Git
+          & GitHub</p>
+
+        <div class="social-links"></div>
+      </div>
+    </section>
+    <section class="about" id="about">
+      <div class="about-container">
+        <div class="about-text">
+          <h2>Sobre Mim</h2>
+          <p>
+            Olá! Sou o <strong>Natanael</strong>, um desenvolvedor apaixonado por resolver problemas através
+            do código.
+            Atualmente foco no ecossistema Full-Stack, transformando ideias em interfaces funcionais e
+            back-ends eficientes.
+          </p>
+          <p>
+            Iniciei minha jornada com Python e hoje transito entre JavaScript e SQL,
+            sempre buscando as melhores práticas de Clean Code e performance.
+          </p>
         </div>
 
-        <nav class="right">
-            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-            <ul class="sections">
-                <li><a href="#me">Home</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#projects">Projetos</a></li>
-                <li><a href="#experiences">Experiência</a></li>
-                <li><a href="#blog">Blog & Artigos</a></li>
-                <li><a href="#contact">Contato</a></li>
-                <li id="theme"><i class="fa-solid fa-circle-half-stroke"></i> Tema</li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="me" id="me">
-            <img src="src/img/perfil.jpeg" alt="Minha foto de perfil">
-            <div class="me-content">
-                <h2 class="my-name">Natanael de Sousa</h2>
-                <p class="my-title">Developer Full-Stack | JavaScript & Python | Node.js & React.js | MySQL & SQL | Git
-                    & GitHub</p>
-
-                <div class="social-links"></div>
-            </div>
-        </section>
-        <section class="about" id="about">
-            <div class="about-container">
-                <div class="about-text">
-                    <h2>Sobre Mim</h2>
-                    <p>
-                        Olá! Sou o <strong>Natanael</strong>, um desenvolvedor apaixonado por resolver problemas através
-                        do código.
-                        Atualmente foco no ecossistema Full-Stack, transformando ideias em interfaces funcionais e
-                        back-ends eficientes.
-                    </p>
-                    <p>
-                        Iniciei minha jornada com Python e hoje transito entre JavaScript e SQL,
-                        sempre buscando as melhores práticas de Clean Code e performance.
-                    </p>
-                </div>
-
-                <div class="about-skills">
-                    <h3>Minhas Techs</h3>
-                    <div class="skills-grid"></div>
-                </div>
-            </div>
-        </section>
-        <section class="projects" id="projects">
-            <h2>Projetos</h2>
-            <div class="projects-grid"></div>
-        </section>
-        <section class="experiences" id="experiences">
-            <h2>Experiência</h2>
-            <div class="timeline"></div>
-        </section>
-        <section class="blogs" id="blog">
-            <h2>Blog & Artigos</h2>
-            <div class="blog-grid"></div>
-        </section>
-        <section class="contact" id="contact">
-            <h2>Entre em Contacto</h2>
-
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Vamos conversar?</h3>
-                    <p>Estou disponível para novos projetos, parcerias ou apenas para trocar uma ideia sobre tecnologia.
-                    </p>
-
-                    <div class="contact-methods">
-                        <div class="method-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <div>
-                                <span>E-mail</span>
-                                <p>natan11ael@hotmail.com</p>
-                            </div>
-                        </div>
-                        <div class="method-item">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <div>
-                                <span>WhatsApp</span>
-                                <p>+55 (11) 9xxxx-xxxx</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form" action="https://formspree.io/f/xjgvbjrb" method="POST">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Teu Nome" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Teu E-mail" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="subject" placeholder="Assunto" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" placeholder="Como posso ajudar?" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">
-                        Enviar Mensagem <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div class="footer-container">
-            <div class="footer-brand">
-                <span class="title">Natanael<span>.</span></span>
-                <p>Construindo soluções Full-Stack com foco em performance e experiência do usuário.</p>
-            </div>
-
-            <div class="footer-social"></div>
-
-            <div class="footer-copy">
-                <p>&copy; 2025 Natanael de Sousa. Todos os direitos reservados.</p>
-            </div>
-
-            <a href="#me" class="back-to-top">
-                <i class="fa-solid fa-arrow-up"></i>
-            </a>
+        <div class="about-skills">
+          <h3>Minhas Techs</h3>
+          <div class="skills-grid"></div>
         </div>
-    </footer>
-    <script src="src/script.js"></script>
+      </div>
+    </section>
+    <section class="projects" id="projects">
+      <h2>Projetos</h2>
+      <div class="projects-grid"></div>
+    </section>
+    <section class="experiences" id="experiences">
+      <h2>Experiência</h2>
+      <div class="timeline"></div>
+    </section>
+    <section class="blogs" id="blog">
+      <h2>Blog & Artigos</h2>
+      <div class="blog-grid"></div>
+    </section>
+    <section class="contact" id="contact">
+      <h2>Entre em Contato</h2>
+
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Vamos conversar?</h3>
+          <p>Estou disponível para novos projetos, parcerias ou apenas para trocar uma ideia sobre tecnologia.
+          </p>
+
+          <div class="contact-methods">
+            <div class="method-item">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <span>E-mail</span>
+                <p>natan11ael@hotmail.com</p>
+              </div>
+            </div>
+            <div class="method-item">
+              <i class="fa-brands fa-whatsapp"></i>
+              <div>
+                <span>WhatsApp</span>
+                <p>+55 (11) 9xxxx-xxxx</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" action="https://formspree.io/f/xjgvbjrb" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Teu Nome" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Teu E-mail" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="subject" placeholder="Assunto" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Como posso ajudar?" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" aria-label="Enviar formulário de contato">
+            Enviar Mensagem <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="title">Natanael<span>.</span></span>
+        <p>Construindo soluções Full-Stack com foco em performance e experiência do usuário.</p>
+      </div>
+
+      <div class="footer-social"></div>
+
+      <div class="footer-copy">
+        <p>&copy; 2025 Natanael de Sousa. Todos os direitos reservados.</p>
+      </div>
+
+      <a href="#me" class="back-to-top">
+        <i class="fa-solid fa-arrow-up"></i>
+      </a>
+    </div>
+  </footer>
+  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

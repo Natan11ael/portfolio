@@ -1,0 +1,52 @@
+# Nome do fluxo de trabalho
+name: Deploy do Portfolio
+
+on:
+    # Executa o deploy sempre que houver um push na branch main
+    push:
+        branches: ["main"]
+
+    # Permite rodar o deploy manualmente pela aba Actions do GitHub
+    workflow_dispatch:
+
+# Configura as permissões necessárias para o GitHub Pages
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+# Garante que apenas um deploy aconteça por vez
+concurrency:
+    group: "pages"
+    cancel-in-progress: true
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout (Baixar código do repositório)
+              uses: actions/checkout@v4
+
+            - name: Setup Node (Instalar Node.js)
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "npm"
+
+            - name: Install dependencies (Instalar dependências)
+              run: npm install
+
+            - name: Build (Gerar pasta dist via Vite)
+              run: npm run build
+
+            - name: Setup Pages (Configurar ambiente do GitHub Pages)
+              uses: actions/configure-pages@v4
+
+            - name: Upload artifact (Preparar pasta dist para upload)
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: "./dist"
+
+            - name: Deploy to GitHub Pages (Publicar o site)
+              id: deployment
+              uses: actions/deploy-pages@v4

@@ -22,7 +22,7 @@
         },
         {
             "nome": "Youtube",
-            "url": "http://www.youtube.com/@Naytan-Fox",
+            "url": "https://www.youtube.com/@Naytan-Fox",
             "icone": "fa-brands fa-youtube"
         }
     ],
@@ -44,20 +44,55 @@
         {
             "title": "Portfólio Moderno",
             "description": "Design responsivo, animações customizadas e moldavel com json para modificações tranquilas e rápidas.",
-            "image": "assets/img/projeto2.jpg",
+            "image": "/portfolio/og-image.png",
             "techs": [
-                "HTML",
-                "CSS",
+                "HTML & CSS",
                 "JS",
                 "JSON"
             ],
             "github": "https://github.com/Natan11ael/portfolio/",
             "demo": "https://natan11ael.github.io/portfolio/"
+        },
+        {
+            "title": "Genesis Blueprint",
+            "description": "Simulador web, com design de layout html-css por padrão e elementos simulados desenhado por canvas webgl, seja capaz criar maquinas terrestres, aquáticas, aéreas e espaciais com simulação de soft-body, fluidos & gases, gravidade e massa & densidade.",
+            "image": "",
+            "techs": [
+                "HTML & CSS",
+                "JS",
+                "WebGL",
+                "JSON"
+            ],
+            "github": "https://github.com/Natan11ael/Genesis-Blueprint/",
+            "demo": ""
+        },
+        {
+            "title": "Chat Web",
+            "description": "Um simples Chat Web com capacidades de criar salas com nomes próprios e conversas em tempo real.",
+            "image": "",
+            "techs": [
+                "HTML & CSS",
+                "JS",
+                "Socket.io",
+                "JSON"
+            ],
+            "github": "https://github.com/Natan11ael/ChatWeb/",
+            "demo": ""
+        },
+        {
+            "title": "Game of Life - Terminal (cmd)",
+            "description": "O Jogo da vida criado pro John Conway via terminal, para melhor experiencia deixe o cmd em tela cheia.",
+            "image": "",
+            "techs": [
+                "Cpp"
+            ],
+            "github": "https://github.com/Natan11ael/Terminal--Game-of-Life/",
+            "demo": ""
         }
     ],
     "experiences": [
         {
-            "period": "2.2025 - Presente",
+            "period": "Fev 2025 - Presente",
             "position": "Desenvolvedor Full-Stack & Moblie",
             "enterprise": "EE República do Suriname",
             "description": "Desenvolvimento do TCC, objetivo criar uma aplicação web e mobile capaz de participar no mercdo, criamos uma rede social que misturava o melhor de cada rede existente com insagram, discord, reddit e tiwtter.",
@@ -72,7 +107,7 @@
     "//": {
         "title": "Como estruturar um banco de dados MySQL para escalabilidade",
         "summary": "Neste artigo, explico as melhores práticas de normalização e indexação para projetos de grande porte...",
-        "image": "assets/img/blog1.jpg",
+        "image": "",
         "category": "Desenvolvimento",
         "date": "24 Dez, 2025",
         "link": "#"
